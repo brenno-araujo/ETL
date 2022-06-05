@@ -1,0 +1,15 @@
+{
+    "name": "brenno/etl",
+    "autoload": {
+        "psr-4": {
+            "App": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Brenno Araújo",
+            "email": "brennoaraujo@yahoo.com"
+        }
+    ],
+    "require": {}
+}
