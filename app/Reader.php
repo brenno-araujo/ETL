@@ -2,9 +2,7 @@
 
 namespace App;
 
-use App\File;
-
-class Reader 
+class Reader
 {
     private $directory;
     private $file;
@@ -32,12 +30,18 @@ class Reader
     public function read()
     {
         $directory = $this->getDirectory() . '/' . $this->getFile();
-        $file = new File();
-        if (strpos($this->getFile(), '.csv')) {
-            $file->readFileCSV($directory);
-        } else if (strpos($this->getFile(), '.txt')) {
-            $file->readFileTXT($directory);
-        }
-    }
+        $extension = explode('.', $this->getFile());
 
+        $class = '\App\extrator\\' . ucfirst($extension[1]);
+
+        return call_user_func_array(
+            [
+                new $class,
+                'readFile'
+            ],
+            [
+                $directory
+            ]
+        );
+    }
 }
